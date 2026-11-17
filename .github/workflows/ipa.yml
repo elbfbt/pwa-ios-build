@@ -11,7 +11,7 @@ jobs:
       - name: Setup Capacitor
         run: |
           npm init -y
-          npm i @capacitor/core @capacitor/cli @capacitor/ios
+          npm i @capacitor/core@7 @capacitor/cli@7 @capacitor/ios@7
           cat > capacitor.config.json <<'EOF'
           {
             "appId": "com.example.pwa",
@@ -24,7 +24,7 @@ jobs:
           npx cap sync ios
       - name: Build unsigned
         run: |
-          xcodebuild -project ios/App/App.xcodeproj -scheme App \
+          xcodebuild -workspace ios/App/App.xcworkspace -scheme App \
             -configuration Release -sdk iphoneos -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=""
           mkdir Payload
